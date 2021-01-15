@@ -2,16 +2,22 @@ let baseURL='https://cat-fact.herokuapp.com/facts';
 
 let factContainer = document.querySelector('.factContainer');
 let image = document.getElementById('catPhoto');
-image.addEventListener('click', fetchFact);
+image.addEventListener('click', displayImage);
 
 function fetchFact() {
     fetch(baseURL)
         .then(response => response.json())
         .then(json => displayFact(json))
+}
 
+// put catContainer in separate function that fires from image event, then call fetchFact
+
+function displayImage() {
+    
     let catContainer = document.getElementById('catContainer');
-   
     catContainer.removeChild(image);
+
+    fetchFact();
 }
 
 function displayFact(data) {
